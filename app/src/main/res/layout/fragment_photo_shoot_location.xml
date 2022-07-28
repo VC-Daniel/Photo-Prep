@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.photoShootLocation.PhotoShootLocationFragment">
+    <!-- The logic for dynamically scrolling the photo shoot location overview section of the
+    screen is based on the tutorial at https://nerdzlab.com/collapsing-toolbar-with-motionlayout/ -->
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.vcdaniel.photoprep.ui.photoShootLocation.PhotoShootLocationViewModel" />
+
+        <import type="com.vcdaniel.photoprep.ConditionType" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/photoShootCoordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/photoShootNestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/prepLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/prepLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/extra_large_margin"
+                    android:text="@string/prep_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:layout_constraintBottom_toTopOf="@+id/prepRecycler"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/filterButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/extra_large_margin"
+                    android:background="@color/transparent"
+                    android:drawableStart="@drawable/ic_baseline_filter_alt_off_24"
+                    android:drawablePadding="@dimen/normal_padding"
+                    android:text="@string/filter_show_all"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="?attr/colorOnSecondary"
+                    app:layout_constraintBottom_toTopOf="@+id/prepRecycler"
+                    app:layout_constraintEnd_toStartOf="@+id/uncheckAllButton"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@+id/prepLabel"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/uncheckAllButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/large_margin"
+                    android:layout_marginEnd="@dimen/large_margin"
+                    android:background="@color/transparent"
+                    android:drawableStart="@drawable/ic_baseline_remove_done_24"
+                    android:drawablePadding="@dimen/large_icon_padding"
+                    android:text="@string/uncheck_all"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="?attr/colorOnSecondary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/filterButton"
+                    app:layout_constraintTop_toTopOf="@+id/filterButton" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/prepRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/prepLabel"
+                    app:photoShootPrepListData="@{viewModel.visiblePrepItems}"
+                    app:spanCount="@integer/number_of_prep_columns"
+                    tools:itemCount="@integer/sample_number_rows"
+                    tools:listitem="@layout/photoshoot_prep_list_item" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/half_photo_shoot_overview_height">
+
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/motionLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/teal_700"
+                android:minHeight="@dimen/large_scrim_height"
+                app:layoutDescription="@xml/fragment_photo_shoot_location_xml_constraintlayout_scene"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/locationImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:elevation="@dimen/small_elevation"
+                    android:outlineProvider="bounds"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/lighthouse_placeholder"
+                    android:contentDescription="@string/main_location_image_default_description"/>
+
+                <View
+                    android:id="@+id/nextPhotoShootBackground"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/large_scrim_height"
+                    android:background="?attr/colorSecondary"
+                    android:elevation="@dimen/small_elevation"
+                    app:layout_constraintBottom_toBottomOf="@+id/groupChip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/locationImage" />
+
+                <TextView
+                    android:id="@+id/nextPhotoShootLabelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/mini_margin"
+                    android:elevation="@dimen/small_elevation"
+                    android:text="@string/next_photo_shoot_format"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/nextPhotoShootBackground" />
+
+                <ImageButton
+                    android:id="@+id/editNextPhotoShootButton"
+                    android:layout_width="@dimen/extra_small_icon_size"
+                    android:layout_height="@dimen/extra_small_icon_size"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:background="@drawable/ic_baseline_edit_calendar_24"
+                    android:elevation="@dimen/small_elevation"
+                    app:layout_constraintBottom_toBottomOf="@+id/nextPhotoShootLabelText"
+                    app:layout_constraintStart_toEndOf="@+id/nextPhotoShootLabelText"
+                    app:layout_constraintTop_toTopOf="@+id/nextPhotoShootLabelText"
+                    android:contentDescription="@string/calendar_icon_desc"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/groupChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:checkable="false"
+                    android:elevation="@dimen/small_elevation"
+                    android:text="@string/group_condition"
+                    app:chipIcon="@drawable/ic_baseline_groups_24"
+                    app:chipIconVisible="true"
+                    app:layout_constraintEnd_toStartOf="@+id/childChip"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nextPhotoShootLabelText" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/childChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:checkable="false"
+                    android:elevation="@dimen/small_elevation"
+                    android:text="@string/child_condition"
+                    app:chipIcon="@drawable/ic_baseline_child_care_24"
+                    app:chipIconVisible="true"
+                    app:layout_constraintEnd_toStartOf="@+id/petChip"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/groupChip"
+                    app:layout_constraintTop_toTopOf="@+id/groupChip" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/petChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:checkable="false"
+                    android:elevation="@dimen/normal_elevation"
+                    android:text="@string/pet_condition"
+                    app:chipIcon="@drawable/ic_baseline_pets_24"
+                    app:chipIconVisible="true"
+                    app:layout_constraintEnd_toStartOf="@+id/smallWeatherIcon"
+                    app:layout_constraintStart_toEndOf="@+id/childChip"
+                    app:layout_constraintTop_toTopOf="@+id/groupChip" />
+
+                <ImageView
+                    android:id="@+id/smallWeatherIcon"
+                    android:layout_width="@dimen/minimized_next_photo_shoot_button"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/mini_margin"
+                    android:layout_marginBottom="@dimen/mini_margin"
+                    android:alpha="0"
+                    android:contentDescription="@string/weather_icon_desc"
+                    android:elevation="@dimen/small_elevation"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_no_weather_data"
+                    app:layout_constraintBottom_toBottomOf="@+id/nextPhotoShootBackground"
+                    app:layout_constraintEnd_toStartOf="@+id/directionsButton"
+                    app:layout_constraintStart_toEndOf="@+id/petChip"
+                    app:layout_constraintTop_toBottomOf="@+id/nextPhotoShootLabelText" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/directionsButton"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:alpha="0"
+                    android:elevation="@dimen/small_elevation"
+                    app:icon="@drawable/ic_baseline_directions_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/groupChip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/smallWeatherIcon"
+                    app:layout_constraintTop_toTopOf="@+id/groupChip" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/weatherCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginBottom="@dimen/normal_margin"
+                    app:cardCornerRadius="@dimen/large_rounded_radius"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mapCard"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nextPhotoShootBackground"
+                    app:layout_constraintWidth_percent="0.4">
+
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/weatherTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/top_rounded_dark_background"
+                    android:elevation="@dimen/normal_elevation"
+                    android:paddingTop="@dimen/half_small_padding"
+                    android:paddingBottom="@dimen/half_small_padding"
+                    android:text="@string/weather_title"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title_text_size"
+                    app:layout_constraintEnd_toEndOf="@+id/weatherCard"
+                    app:layout_constraintStart_toStartOf="@id/weatherCard"
+                    app:layout_constraintTop_toTopOf="@id/weatherCard" />
+
+                <TextView
+                    android:id="@+id/highTempLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/weather_info_margin"
+                    android:elevation="@dimen/normal_elevation"
+                    android:minEms="@integer/weather_info_width"
+                    android:text="@string/high_temp_placeholder"
+                    app:layout_constraintStart_toStartOf="@id/weatherCard"
+                    app:layout_constraintTop_toBottomOf="@id/weatherTitle"
+                    tools:text="@string/sample_weather_high_label" />
+
+                <TextView
+                    android:id="@+id/lowTempLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/half_normal_margin"
+                    android:elevation="@dimen/normal_elevation"
+                    android:minEms="@integer/weather_info_width"
+                    android:text="@string/low_temp_placeholder"
+                    app:layout_constraintStart_toStartOf="@id/weatherCard"
+                    app:layout_constraintTop_toBottomOf="@id/highTempLabel"
+                    tools:text="@string/sample_weather_low_label" />
+
+                <TextView
+                    android:id="@+id/precipitationLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/half_normal_margin"
+                    android:elevation="@dimen/normal_elevation"
+                    android:minEms="@integer/weather_info_width"
+                    android:text="@string/precipitation_placeholder"
+                    app:layout_constraintStart_toStartOf="@id/weatherCard"
+                    app:layout_constraintTop_toBottomOf="@id/lowTempLabel"
+                    tools:text="@string/sample_weather_precipitation_label" />
+
+                <TextView
+                    android:id="@+id/windLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/half_normal_margin"
+                    android:elevation="@dimen/normal_elevation"
+                    android:minEms="@integer/weather_info_width"
+                    android:text="@string/wind_placeholder"
+                    app:layout_constraintStart_toStartOf="@id/weatherCard"
+                    app:layout_constraintTop_toBottomOf="@id/precipitationLabel"
+                    tools:text="@string/sample_weather_wind_label" />
+                <!-- https://www.tutorialspoint.com/how-to-make-marquee-text-in-android -->
+                <TextView
+                    android:id="@+id/weatherDescriptionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/half_normal_margin"
+                    android:elevation="@dimen/normal_elevation"
+                    android:text="@string/weather_description_title"
+                    app:layout_constraintStart_toStartOf="@id/weatherCard"
+                    app:layout_constraintTop_toBottomOf="@id/windLabel" />
+
+                <TextView
+                    android:id="@+id/weatherDescriptionLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/half_normal_margin"
+                    android:layout_marginEnd="@dimen/half_normal_margin"
+                    android:layout_marginBottom="@dimen/half_normal_margin"
+                    android:elevation="@dimen/normal_elevation"
+                    android:ellipsize="marquee"
+                    android:fadingEdge="none"
+                    android:marqueeRepeatLimit="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/weather_description_placeholder"
+                    app:layout_constraintEnd_toEndOf="@id/weatherCard"
+                    app:layout_constraintStart_toEndOf="@id/weatherDescriptionTitle"
+                    app:layout_constraintTop_toBottomOf="@id/windLabel"
+                    tools:text="@string/sample_weather_desc_label" />
+
+                <ImageView
+                    android:id="@+id/mainWeatherIcon"
+                    android:layout_width="@dimen/large_button_size"
+                    android:layout_height="@dimen/large_button_size"
+                    android:layout_marginEnd="@dimen/half_normal_margin"
+                    android:background="@drawable/rounded_corners_secondary_color_background"
+                    android:elevation="@dimen/normal_elevation"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_no_weather_data"
+                    app:layout_constraintBottom_toTopOf="@id/precipitationLabel"
+                    app:layout_constraintEnd_toEndOf="@id/weatherCard"
+                    app:layout_constraintTop_toBottomOf="@+id/weatherTitle"
+                    android:contentDescription="@string/weather_icon_desc"/>
+
+                <TextView
+                    android:id="@+id/weatherNoteDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:alpha="0"
+                    android:background="@drawable/rounded_corners_secondary_color_background"
+                    android:elevation="@dimen/normal_elevation"
+                    android:paddingTop="@dimen/normal_padding"
+                    android:paddingBottom="@dimen/normal_padding"
+                    android:text="@string/weather_data_issue_indicator"
+                    android:textAlignment="center"
+                    android:textColor="?attr/colorOnPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/weatherCard"
+                    app:layout_constraintEnd_toEndOf="@+id/weatherCard"
+                    app:layout_constraintStart_toStartOf="@id/weatherCard" />
+
+                <ImageView
+                    android:id="@+id/weatherNoteInfoImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:alpha="0"
+                    android:elevation="@dimen/normal_elevation"
+                    android:src="@drawable/ic_baseline_info_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/weatherNoteDetail"
+                    app:layout_constraintStart_toStartOf="@id/weatherNoteDetail"
+                    app:layout_constraintTop_toTopOf="@+id/weatherNoteDetail"
+                    android:contentDescription="@string/icon_weather_note_desc"/>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mapCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginBottom="@dimen/normal_margin"
+                    app:cardCornerRadius="@dimen/large_rounded_radius"
+                    app:layout_constraintBottom_toBottomOf="@+id/weatherCard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/weatherCard"
+                    app:layout_constraintTop_toTopOf="@+id/weatherCard"
+                    app:layout_constraintWidth_percent="0.4">
+
+                    <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/liteMap"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        map:liteMode="true"
+                        tools:context=".MapsActivity" />
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/extendedFabMotionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|end"
+            android:elevation="@dimen/high_elevation"
+            app:layoutDescription="@xml/fragment_photo_shoot_prep_fab_location_scene">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addPrepItemFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:clickable="true"
+                android:contentDescription="@string/add_a_prep_item"
+                android:focusable="true"
+                android:src="@drawable/ic_baseline_add_task_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addNewPrepItemFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:contentDescription="@string/create_new_prep_item"
+                android:src="@drawable/ic_baseline_add_task_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/addCommonPrepItemFab" />
+
+            <TextView
+                android:id="@+id/addNewPrepItemFabLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/half_normal_margin"
+                android:layout_marginEnd="@dimen/half_normal_margin"
+                android:background="@color/semiTransparentScrimColor"
+                android:paddingStart="@dimen/half_small_padding"
+                android:paddingEnd="@dimen/half_small_padding"
+                android:text="@string/add_new_prep"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/addNewPrepItemFab"
+                app:layout_constraintEnd_toStartOf="@+id/addNewPrepItemFab"
+                app:layout_constraintTop_toTopOf="@+id/addNewPrepItemFab" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addCommonPrepItemFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:contentDescription="@string/add_prep_from_common_library"
+                android:src="@drawable/ic_baseline_checklist_rtl_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/addCommonPrepItemFabLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/half_normal_margin"
+                android:layout_marginEnd="@dimen/half_normal_margin"
+                android:background="@color/semiTransparentScrimColor"
+                android:paddingStart="@dimen/half_small_padding"
+                android:paddingEnd="@dimen/half_small_padding"
+                android:text="@string/add_prep_from_common_prep"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/addCommonPrepItemFab"
+                app:layout_constraintEnd_toStartOf="@+id/addCommonPrepItemFab"
+                app:layout_constraintTop_toTopOf="@id/addCommonPrepItemFab" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

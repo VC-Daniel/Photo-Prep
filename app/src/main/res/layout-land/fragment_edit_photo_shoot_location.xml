@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.vcdaniel.photoprep.ui.editPhotoShootLocation.EditPhotoShootLocationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/editPhotoShootLocationConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundDefaultColor">
+
+        <ImageView
+            android:id="@+id/locationImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:outlineProvider="bounds"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/mapCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="@fraction/main_image_size"
+            app:srcCompat="@drawable/lighthouse_placeholder"
+            android:contentDescription="@string/main_location_image_default_description"/>
+
+        <!-- https://medium.com/omisoft/textinputlayout-styling-8b36a5e0d73c -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/locationNameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:elevation="@dimen/high_elevation"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/locationImage"
+            app:layout_constraintEnd_toEndOf="@id/locationImage"
+            app:layout_constraintStart_toStartOf="@+id/locationImage">
+
+            <EditText
+                android:id="@+id/locationNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_search"
+                android:backgroundTint="@color/semiTransparentDefaultBackground"
+                android:hint="@string/location_name_hint"
+                android:inputType="textMultiLine|textCapWords"
+                android:text="@={viewModel.photoShootOverview.photoShootLocationName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:text="Rising Park" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/imageButton"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:backgroundTint="?attr/colorSecondary"
+            app:icon="@drawable/ic_baseline_add_a_photo_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mapCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/extra_large_margin"
+            android:layout_marginTop="@dimen/map_margin_top"
+            android:layout_marginEnd="@dimen/extra_large_margin"
+            android:layout_marginBottom="@dimen/map_margin_top"
+            android:elevation="@dimen/normal_elevation"
+            app:cardCornerRadius="@dimen/large_rounded_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/locationImage"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MapsActivity" />
+        </androidx.cardview.widget.CardView>
+
+        <!--search view to search our location
+        https://www.geeksforgeeks.org/how-to-add-searchview-in-google-maps-in-android/-->
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:background="@drawable/rounded_search"
+            android:backgroundTint="@color/semiTransparentDefaultBackground"
+            android:elevation="@dimen/high_elevation"
+            app:iconifiedByDefault="false"
+            app:layout_constraintBottom_toBottomOf="@+id/mapCard"
+            app:layout_constraintEnd_toEndOf="@+id/mapCard"
+            app:layout_constraintStart_toStartOf="@+id/mapCard"
+            app:queryHint="@string/search_hint" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

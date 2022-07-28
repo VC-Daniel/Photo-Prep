@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Photo Prep</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_subtitle">Let\'s prep for a great photo shoot!</string>
+    <string name="nav_header_desc">Navigation header which displays the app\'s icon.</string>
+    <string name="action_save">Save</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="menu_photo_shoot_locations">Photo Shoot Locations</string>
+    <string name="menu_common_prep_library">Common Prep Library</string>
+    <string name="menu_preferences">Preferences</string>
+
+    <string name="new_location">New Location</string>
+    <string name="group_condition">Group</string>
+    <string name="child_condition">Child</string>
+    <string name="pet_condition">Pet</string>
+    <string name="rainy_condition">Rain</string>
+    <string name="cloudy_condition">Clouds</string>
+    <string name="windy_condition">Wind</string>
+    <string name="hot_condition">Hot</string>
+    <string name="cold_condition">Cold</string>
+
+    <string name="settings">Settings</string>
+    <string name="permission_denied_explanation">Grant location permission to move the map to your current location.</string>
+    <string name="location_enable_explanation">Enable device location to enhance your experience using the map.</string>
+
+    <string name="dialog_cannot_save_photoshoot_message">A location must be specified on the map. You can click on a point of interest or anywhere on the map.</string>
+    <string name="dialog_cannot_save_photoshoot_title">Changes Not Saved</string>
+    <string name="dialog_delete_photoshoot_message">This will delete the photo shoot location, all it\'s prep and the photo associated with it.</string>
+    <string name="dialog_delete_photoshoot_title">Delete Photo Shoot Location?</string>
+    <string name="dialog_delete_photoshoot_continue">Delete</string>
+    <string name="dialog_delete_photoshoot_cancel">Cancel</string>
+    <string name="dialog_camera_permission_needed">If you would like to take a photo please grant camera permission.</string>
+    <string name="dialog_camera_permission_needed_title">Camera Permission</string>
+    <string name="dialog_read_permission_needed">If you would like to choose a photo from the gallery please grant file read permissions.</string>
+    <string name="dialog_read_permission_needed_title">File Permission</string>
+    <string name="dialog_no_common_prep_message">First add common prep items or tasks to the Common Prep Library.</string>
+    <string name="dialog_no_common_prep_title">No Common Prep Defined</string>
+    <string name="continue_uncheck">Continue</string>
+    <string name="dialog_uncheck_all_prep_title">Uncheck All Prep?</string>
+    <string name="dialog_uncheck_all_prep_message">This will uncheck all prep for this photo shoot location including prep that is not currently displayed due to filtering.</string>
+    <string name="dialog_weather_not_retrieved_title">Weather Not Available</string>
+    <string name="dialog_weather_beyond_forecast_message">The next photo shoot is beyond the 7 day forecast.</string>
+    <string name="dialog_weather_past_date_message">The next photo shoot date is in the past.</string>
+    <string name="dialog_weather_date_not_set_message">The next photo shoot date has not been set.</string>
+    <string name="no_prep_added_message">No prep was added.</string>
+    <string name="one_prep_added_message">%d prep item added.</string>
+    <string name="multiple_prep_added_message">%d prep items added.</string>
+    <string name="dialog_save_button_text">Save</string>
+    <string name="dialog_cancel_button_text">Cancel</string>
+    <string name="confirm_add">Add</string>
+    <string name="cancel_add">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="required_error_text">Required</string>
+    <string name="decline_granting_permission">Maybe later</string>
+
+    <string name="cancel_uncheck">Cancel</string>
+    <string name="filter_show_all">Show All</string>
+    <string name="filter_apply_filter">Filter</string>
+
+    <string name="gps_location_formatting">%.4f, %.4f</string>
+    <string name="next_photo_shoot_format">Next Photo Shoot: %s</string>
+    <!-- Adding Celsius or fahrenheit symbols to the weather information. This is based on the
+    answer at https://stackoverflow.com/a/47251113 -->
+    <string name="high_temp_format_imperial">High: %.0f\u2109</string>
+    <string name="low_temp_format_imperial">Low: %.0f\u2109</string>
+    <string name="high_temp_format_metric">High: %.0f\u2103</string>
+    <string name="low_temp_format_metric">Low: %.0f\u2103</string>
+    <string name="wind_format_imperial">Wind: %.1fmph</string>
+    <string name="wind_format_metric">Wind: %.1fm/s</string>
+    <string name="precipitation_format">Precipitation: %.0f\uFF05</string>
+    <string name="high_temp_placeholder">High:—</string>
+    <string name="low_temp_placeholder">Low:—</string>
+    <string name="precipitation_placeholder">Precipitation:—</string>
+    <string name="wind_placeholder">Wind:—</string>
+    <string name="weather_description_title">Desc: </string>
+    <string name="weather_description_placeholder">—</string>
+    <string name="sample_weather_high_label">High: 92F</string>
+    <string name="sample_weather_low_label">Low: 40 F</string>
+    <string name="sample_weather_precipitation_label">Precipitation: 20%</string>
+    <string name="sample_weather_wind_label">Wind: 10 mph</string>
+    <string name="sample_weather_desc_label">thunderstorm with heavy drizzle</string>
+    <string name="icon_weather_note_desc">Indicates a message about retrieving weather data is available.</string>
+    <string name="weather_data_issue_indicator">Unavailable</string>
+
+    <string name="weather_unit_metric">metric</string>
+    <string name="weather_unit_imperial">imperial</string>
+    <string name="weather_presentable_unit_metric">Metric</string>
+    <string name="weather_presentable_unit_imperial">Imperial</string>
+
+    <string name="weather_units_preference_key">weather_units_preference_key</string>
+    <string name="default_filter_state_key">filter_prep_switch_preference</string>
+    <string name="rain_preference_key">rain_preference_key</string>
+    <string name="cloud_preference_key">cloud_preference_key</string>
+    <string name="wind_preference_key">wind_preference_key</string>
+    <string name="hot_preference_key">hot_preference_key</string>
+    <string name="cold_preference_key">cold_preference_key</string>
+
+    <string name="new_prep_fab_text">New Prep</string>
+    <string name="map_desc_format">A map of the area around %s</string>
+    <string name="photo_desc_format">A photo of %s</string>
+    <string name="sample_prep_title">Umbrella</string>
+    <string name="prep_hint">Prep:</string>
+    <string name="prep_description">Task or item info</string>
+    <string name="conditions_title">Conditions:</string>
+    <string name="delete_prep">Delete this prep.</string>
+    <string name="common_prep_instructions">Define common prep items or tasks. Then you can quickly add them to your photo shoot locations.</string>
+    <string name="location_name_hint">Location Name</string>
+    <string name="search_hint">Address or Name</string>
+    <string name="main_location_image_default_description">Displays the currently set main photo for this photo shoot location.</string>
+    <string name="sample_photo_shoot_location_name">Mysterious Coastal Lighthouse</string>
+    <string name="camera_button_description">Camera</string>
+    <string name="gallery_button_description">Gallery</string>
+    <string name="cancel_next_photo_shoot_changes">Cancel making changes to the next photo shoot.</string>
+    <string name="save_next_photo_shoot_changes">Save changes to the next photo shoot.</string>
+    <string name="next_photo_shoot_title">Next Photo Shoot</string>
+    <string name="clear_date_selection">Clear Selection</string>
+    <string name="weather_title">Weather</string>
+    <string name="prep_title">Prep</string>
+    <string name="uncheck_all">Uncheck All</string>
+    <string name="add_new_prep">Add New Prep</string>
+    <string name="add_common_prep_title">Common Prep Library</string>
+    <string name="add_prep_from_common_library">Add a new prep item to the photo shoot from the common library.</string>
+    <string name="create_new_prep_item">Create a new prep item to the photo shoot.</string>
+    <string name="add_a_prep_item">Add a new prep item to the photo shoot.</string>
+    <string name="add_prep_from_common_prep">Add From Common Prep</string>
+    <string name="weather_icon_desc">An icon that represents the overall weather on the next photo shoot date.</string>
+    <string name="calendar_icon_desc">An icon of a calendar.</string>
+    <string name="map_thumbnail_pref_summary">Always display a map instead of an image thumbnail</string>
+    <string name="map_thumbnail_pref_title">Use Map Thumbnails</string>
+    <string name="filter_pref_summary">By default filter what prep is shown.</string>
+    <string name="filter_pref_title">Filter Prep Data</string>
+    <string name="units_prep_title">Preferred Units</string>
+    <string name="rain_pref_title">Chance of Rain Threshold</string>
+    <string name="cloud_pref_title">Cloud Coverage Threshold</string>
+    <string name="wind_pref_title">Wind Speed Threshold</string>
+    <string name="hot_pref_title">Hot Temperature Threshold</string>
+    <string name="cold_pref_title">Cold Temperature Threshold</string>
+    <string name="show_close_button_key">showCloseButton</string>
+    <string name="use_map_preference_key">use_map_switch_preference</string>
+    <string name="search_no_location_error">No location found.</string>
+    <string name="photo_shoot_marker_title">Photo Shoot Location</string>
+    <string name="location_Settings_error">Error getting location settings resolution: </string>
+    <string name="creating_temp_photo_file_error">Error while saving the creating the image placeholder: </string>
+</resources>

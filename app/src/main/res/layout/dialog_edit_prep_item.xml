@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.vcdaniel.photoprep.ui.editPrepItem.EditPrepItemViewModel" />
+
+        <import type="com.vcdaniel.photoprep.ConditionType" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/prepNameEditLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large_margin"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/large_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deleteButton"
+                app:placeholderText="@string/prep_description">
+
+                <EditText
+                    android:id="@+id/prepNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/prep_hint"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:text="@={viewModel.prep.prepName}"
+                    app:layout_constraintStart_toStartOf="@+id/prepHeaderText"
+                    app:layout_constraintTop_toBottomOf="@+id/prepHeaderText" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/chipTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/conditions_title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prepNameEditLayout" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/photoShootGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                app:layout_constraintStart_toStartOf="@id/weatherGroup"
+                app:layout_constraintTop_toBottomOf="@+id/chipTitleTextView">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/groupChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    conditionType="@{ConditionType.GROUP}"
+                    conditions="@{viewModel.prep.conditions}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/group_condition"
+                    app:chipIcon="@drawable/ic_baseline_groups_24"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/childChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    conditionType="@{ConditionType.CHILD}"
+                    conditions="@{viewModel.prep.conditions}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/child_condition"
+                    app:chipIcon="@drawable/ic_baseline_child_care_24"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/petChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    conditionType="@{ConditionType.PET}"
+                    conditions="@{viewModel.prep.conditions}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pet_condition"
+                    app:chipIcon="@drawable/ic_baseline_pets_24"
+                    app:chipIconVisible="true" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/weatherGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/photoShootGroup">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/rainyChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    conditionType="@{ConditionType.RAINY}"
+                    conditions="@{viewModel.prep.conditions}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rainy_condition"
+                    app:chipIcon="@drawable/ic_rain_cloud"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/cloudyChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    conditionType="@{ConditionType.CLOUDY}"
+                    conditions="@{viewModel.prep.conditions}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cloudy_condition"
+                    app:chipIcon="@drawable/ic_clouds"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/windyChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    conditionType="@{ConditionType.WINDY}"
+                    conditions="@{viewModel.prep.conditions}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/windy_condition"
+                    app:chipIcon="@drawable/ic_baseline_wind_power_24"
+                    app:chipIconVisible="true" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/temperatureGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/normal_margin"
+                app:layout_constraintStart_toStartOf="@+id/weatherGroup"
+                app:layout_constraintTop_toBottomOf="@+id/weatherGroup"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/hotChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    conditionType="@{ConditionType.HOT}"
+                    conditions="@{viewModel.prep.conditions}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hot_condition"
+                    app:chipIcon="@drawable/ic_hot_24"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/coldChip"
+                    style="@style/Widget.MyApp.Chip.Choice"
+                    conditionType="@{ConditionType.COLD}"
+                    conditions="@{viewModel.prep.conditions}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cold_condition"
+                    app:chipIcon="@drawable/ic_cold_24"
+                    app:chipIconVisible="true" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <ImageView
+                android:id="@+id/deleteButton"
+                editingVisibility="@{viewModel.prepId}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:contentDescription="@string/delete_prep"
+                android:onClick="@{() -> viewModel.deletePrep()}"
+                android:src="@drawable/ic_baseline_delete_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

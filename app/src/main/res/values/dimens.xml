@@ -1,0 +1,46 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="icon_padding">6dp</dimen>
+    <dimen name="chip_margin">8dp</dimen>
+    <dimen name="chip_icon_only_text_margin">0dp</dimen>
+    <dimen name="centered_fab_margin">16dp</dimen>
+    <dimen name="small_icon_size">72dp</dimen>
+    <dimen name="instructions_margin_top">16dp</dimen>
+    <dimen name="map_margin_top">12dp</dimen>
+    <dimen name="normal_margin">8dp</dimen>
+    <dimen name="half_normal_margin">4dp</dimen>
+    <dimen name="weather_icon_end_margin">@dimen/half_normal_margin</dimen>
+    <dimen name="large_margin">16dp</dimen>
+    <dimen name="extra_large_margin">24dp</dimen>
+    <dimen name="large_padding">16dp</dimen>
+    <dimen name="normal_elevation">3dp</dimen>
+    <dimen name="half_small_padding">2dp</dimen>
+    <dimen name="normal_padding">4dp</dimen>
+    <dimen name="large_icon_padding">8dp</dimen>
+    <dimen name="normal_button_size">40dp</dimen>
+    <dimen name="high_elevation">5dp</dimen>
+    <dimen name="small_elevation">2dp</dimen>
+    <dimen name="large_thumbnail_margin">32dp</dimen>
+    <dimen name="extra_high_elevation">10dp</dimen>
+    <dimen name="large_rounded_radius">20dp</dimen>
+    <dimen name="medium_rounded_radius">15dp</dimen>
+    <dimen name="normal_rounded_radius">5dp</dimen>
+    <dimen name="widget_decorator_rounding_radius">12dp</dimen>
+    <dimen name="large_thumbnail_size">250dp</dimen>
+    <dimen name="mini_margin">2dp</dimen>
+    <dimen name="small_text_size">11sp</dimen>
+    <dimen name="half_info_widget_size">-125dp</dimen>
+    <dimen name="mini_chip_size">28dp</dimen>
+    <dimen name="small_chip_size">32dp</dimen>
+    <dimen name="large_button_size">50dp</dimen>
+    <dimen name="weather_info_margin">12dp</dimen>
+    <dimen name="minimized_next_photo_shoot_button">1dp</dimen>
+    <dimen name="large_scrim_height">70dp</dimen>
+    <dimen name="weather_icon_margin">32dp</dimen>
+    <dimen name="half_photo_shoot_overview_height_translation">-250dp</dimen>
+    <dimen name="half_photo_shoot_overview_height">500dp</dimen>
+    <dimen name="extra_small_icon_size">20dp</dimen>
+    <dimen name="title_text_size">16sp</dimen>
+</resources>

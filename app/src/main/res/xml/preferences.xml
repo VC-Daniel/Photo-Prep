@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:title="Display">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_menu_gallery"
+            android:key="@string/use_map_preference_key"
+            android:summary="@string/map_thumbnail_pref_summary"
+            android:title="@string/map_thumbnail_pref_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:icon="@drawable/ic_baseline_filter_alt_24"
+            android:key="@string/default_filter_state_key"
+            android:summary="@string/filter_pref_summary"
+            android:title="@string/filter_pref_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Weather">
+        <!-- https://medium.com/google-developer-experts/exploring-android-jetpack-preferences-8bcb0b7bdd14 -->
+        <DropDownPreference
+            android:defaultValue="@string/weather_unit_imperial"
+            android:entries="@array/weather_unit_options"
+            android:entryValues="@array/weather_unit_values"
+            android:icon="@drawable/ic_baseline_square_foot_24"
+            android:key="@string/weather_units_preference_key"
+            android:title="@string/units_prep_title"
+            app:useSimpleSummaryProvider="true" />
+        <DropDownPreference
+            android:defaultValue="1"
+            android:entries="@array/rain_percentage_options"
+            android:entryValues="@array/weather_condition_values"
+            android:icon="@drawable/ic_rain_cloud"
+            android:key="@string/rain_preference_key"
+            android:title="@string/rain_pref_title"
+            app:useSimpleSummaryProvider="true" />
+        <DropDownPreference
+            android:defaultValue="1"
+            android:entries="@array/cloud_percentage_options"
+            android:entryValues="@array/weather_condition_values"
+            android:icon="@drawable/ic_clouds"
+            android:key="@string/cloud_preference_key"
+            android:title="@string/cloud_pref_title"
+            app:useSimpleSummaryProvider="true" />
+        <DropDownPreference
+            android:defaultValue="1"
+            android:entries="@array/wind_condition_options"
+            android:entryValues="@array/weather_condition_values"
+            android:icon="@drawable/ic_baseline_wind_power_24"
+            android:key="@string/wind_preference_key"
+            android:title="@string/wind_pref_title"
+            app:useSimpleSummaryProvider="true" />
+        <DropDownPreference
+            android:defaultValue="1"
+            android:entries="@array/hot_condition_options"
+            android:entryValues="@array/weather_condition_values"
+            android:icon="@drawable/ic_hot_24"
+            android:key="@string/hot_preference_key"
+            android:title="@string/hot_pref_title"
+            app:useSimpleSummaryProvider="true" />
+        <DropDownPreference
+            android:defaultValue="1"
+            android:entries="@array/cold_condition_options"
+            android:entryValues="@array/weather_condition_values"
+            android:icon="@drawable/ic_cold_24"
+            android:key="@string/cold_preference_key"
+            android:title="@string/cold_pref_title"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.vcdaniel.photoprep.ui.photoShootLocation.EditNextPhotoShootModalViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/top_rounded_background"
+        android:backgroundTint="?attr/colorSecondary">
+
+        <FrameLayout
+            android:id="@+id/next_photo_shoot_bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/cancel_edit_button"
+                    android:layout_width="@dimen/normal_button_size"
+                    android:layout_height="@dimen/normal_button_size"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:background="@drawable/ic_baseline_close_48"
+                    android:contentDescription="@string/cancel_next_photo_shoot_changes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/save_edit_button"
+                    android:layout_width="@dimen/normal_button_size"
+                    android:layout_height="@dimen/normal_button_size"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:background="@drawable/ic_baseline_check_48"
+                    android:contentDescription="@string/save_next_photo_shoot_changes"
+                    app:layout_constraintBottom_toBottomOf="@+id/cancel_edit_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/cancel_edit_button" />
+
+                <TextView
+                    android:id="@+id/next_photo_shoot_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:text="@string/next_photo_shoot_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="?attr/colorOnPrimary"
+                    app:layout_constraintEnd_toStartOf="@+id/save_edit_button"
+                    app:layout_constraintStart_toEndOf="@+id/cancel_edit_button"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/clear_selection_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/half_normal_margin"
+                    android:backgroundTint="@color/teal_700"
+                    android:enabled="@{viewModel.nextPhotoShootDate != 0}"
+                    android:text="@string/clear_date_selection"
+                    android:textSize="@dimen/small_text_size"
+                    app:icon="@drawable/ic_baseline_edit_calendar_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/next_photo_shoot_calendar" />
+
+                <CalendarView
+                    android:id="@+id/next_photo_shoot_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/mini_margin"
+                    android:background="@drawable/rounded_corners_background"
+                    android:date="@{viewModel.nextPhotoShootDate}"
+                    android:theme="@style/CalenderViewCustom"
+                    app:layout_constraintBottom_toTopOf="@+id/clear_selection_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/groupChip" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/groupChip"
+                    style="@style/Widget.MyApp.Chip.Dialog.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:checked="@={viewModel.isGroupChecked()}"
+                    android:text="@string/group_condition"
+                    app:chipIcon="@drawable/ic_baseline_groups_24"
+                    app:chipIconVisible="true"
+                    app:layout_constraintEnd_toStartOf="@+id/childChip"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cancel_edit_button" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/childChip"
+                    style="@style/Widget.MyApp.Chip.Dialog.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:checked="@={viewModel.isChildChecked()}"
+                    android:text="@string/child_condition"
+                    app:chipIcon="@drawable/ic_baseline_child_care_24"
+                    app:chipIconVisible="true"
+                    app:layout_constraintEnd_toStartOf="@+id/petChip"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/groupChip"
+                    app:layout_constraintTop_toTopOf="@+id/groupChip" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/petChip"
+                    style="@style/Widget.MyApp.Chip.Dialog.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:checked="@={viewModel.isPetChecked()}"
+                    android:text="@string/pet_condition"
+                    app:chipIcon="@drawable/ic_baseline_pets_24"
+                    app:chipIconVisible="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/childChip"
+                    app:layout_constraintTop_toTopOf="@+id/groupChip" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="number_of_prep_columns">1</integer>
+    <integer name="sample_number_rows">10</integer>
+    <integer name="normal_animation_time">3000</integer>
+    <integer name="weather_info_width">20</integer>
+</resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vcdaniel.photoprep">
+
+    <!-- Location permission is used to allow the user to see and focus on their current location
+    on a map when specifying the location for a photo shoot location.-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Storage permission is used to allow the main photos to be selected from the user's
+    existing photos  -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- The camera permission is used to allow the app to take a picture if the user chooses to
+    take a picture for the main photo for a photo shoot location. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Since the user's location and taking a photo with the user's camera is not required for
+    the app to function the hardware is set to not be required so the app can be installed on a device
+    even if it doesn't have the hardware to facilitate these pieces of functionality-->
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PhotoPrep">
+        <!-- Allow the user to browse and select from the existing user's photos for the main
+        photo on a photo shoot location-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.vcdaniel.photoprep.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- The api key used to enable Google Maps related functionality such as the interactive
+        map view used to specify the location when editing a photo shoot location. -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/GOOGLE_API_KEY" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PhotoPrep.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

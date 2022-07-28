@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/widget" />
+        <Constraint
+            android:id="@+id/addPrepItemFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/addNewPrepItemFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addCommonPrepItemFab" />
+        <Constraint
+            android:id="@+id/addNewPrepItemFabLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/half_normal_margin"
+            android:layout_marginEnd="@dimen/half_normal_margin"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@+id/addNewPrepItemFab"
+            app:layout_constraintEnd_toStartOf="@+id/addNewPrepItemFab"
+            app:layout_constraintTop_toTopOf="@+id/addNewPrepItemFab" />
+        <Constraint
+            android:id="@+id/addCommonPrepItemFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/addCommonPrepItemFabLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/half_normal_margin"
+            android:layout_marginEnd="@dimen/half_normal_margin"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@id/addCommonPrepItemFab"
+            app:layout_constraintEnd_toStartOf="@+id/addCommonPrepItemFab"
+            app:layout_constraintTop_toTopOf="@id/addCommonPrepItemFab" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@id/widget" />
+        <Constraint
+            android:id="@+id/addPrepItemFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/addNewPrepItemFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:alpha="1"
+            app:layout_constraintBottom_toTopOf="@id/addPrepItemFab"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/addNewPrepItemFabLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/half_normal_margin"
+            android:layout_marginEnd="@dimen/half_normal_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/addNewPrepItemFab"
+            app:layout_constraintEnd_toStartOf="@+id/addNewPrepItemFab"
+            app:layout_constraintTop_toTopOf="@+id/addNewPrepItemFab" />
+        <Constraint
+            android:id="@+id/addCommonPrepItemFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:alpha="1"
+            app:layout_constraintBottom_toTopOf="@id/addNewPrepItemFab"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/addCommonPrepItemFabLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/half_normal_margin"
+            android:layout_marginEnd="@dimen/half_normal_margin"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="@id/addCommonPrepItemFab"
+            app:layout_constraintEnd_toStartOf="@+id/addCommonPrepItemFab"
+            app:layout_constraintTop_toTopOf="@id/addCommonPrepItemFab" />
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="500">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.2"
+                app:framePosition="75"
+                app:motionTarget="@id/addNewPrepItemFab" />
+            <KeyAttribute
+                android:alpha="0.2"
+                app:framePosition="75"
+                app:motionTarget="@id/addNewPrepItemFabLabel" />
+            <KeyAttribute
+                android:alpha="0.2"
+                app:framePosition="60"
+                app:motionTarget="@id/addCommonPrepItemFab" />
+            <KeyAttribute
+                android:alpha="0.2"
+                app:framePosition="60"
+                app:motionTarget="@id/addCommonPrepItemFabLabel" />
+        </KeyFrameSet>
+
+        <OnClick
+            app:clickAction="toggle"
+            app:targetId="@+id/addPrepItemFab" />
+
+    </Transition>
+</MotionScene>

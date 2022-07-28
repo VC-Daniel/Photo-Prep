@@ -1,0 +1,96 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs.kotlin"
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+}
+
+android {
+    compileSdk rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.vcdaniel.photoprep"
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
+        versionCode 2
+        versionName "1.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            // Storing the api key in this way is based on the answer at
+            // https://stackoverflow.com/a/51373630 and the documentation at
+            // https://developer.android.com/studio/build/gradle-tips
+            resValue "string", "GOOGLE_API_KEY", ""
+            resValue "string", "WEATHER_API_KEY", ""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "GOOGLE_API_KEY", ""
+            resValue "string", "WEATHER_API_KEY", ""
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+}
+
+dependencies {
+    // App dependencies
+    implementation "androidx.core:core-ktx:$androidCoreVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+
+    // Material dependencies
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
+
+    //Lifecycle dependencies
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifeCycleExtensionVersion"
+
+    //Navigation dependencies
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    // Preference dependencies
+    implementation "androidx.preference:preference-ktx:$preferencesVersion"
+
+    // Room dependencies
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Maps libraries
+    implementation "com.google.android.gms:play-services-location:$googlePlayServicesVersion"
+    implementation "com.google.android.gms:play-services-maps:$googlePlayMapVersion"
+
+    // Moshi dependencies
+    implementation "com.squareup.moshi:moshi:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+
+    // Retrofit dependencies
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitConverterVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitConverterVersion"
+
+    // Picasso dependencies
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
+
+    // Test dependencies
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidXJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+}

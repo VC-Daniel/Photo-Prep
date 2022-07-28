@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Used to specify what types of files to display when the
+user wants to select an existing photo for the main photo of a photo shoot location -->
+<paths>
+    <external-files-path
+        name="my_images"
+        path="Pictures" />
+</paths>

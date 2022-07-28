@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="fab_margin">72dp</dimen>
+    <dimen name="centered_fab_margin">72dp</dimen>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="weather_unit_options">
+        <item>@string/weather_presentable_unit_imperial</item>
+        <item>@string/weather_presentable_unit_metric</item>
+    </array>
+    <array name="weather_unit_values">
+        <item>@string/weather_unit_imperial</item>
+        <item>@string/weather_unit_metric</item>
+    </array>
+    <string-array name="rain_percentage_options">
+        <item>10\uFF05</item>
+        <item>30\uFF05</item>
+        <item>60\uFF05</item>
+    </string-array>
+    <string-array name="cloud_percentage_options">
+        <item>10\uFF05</item>
+        <item>30\uFF05</item>
+        <item>60\uFF05</item>
+    </string-array>
+    <string-array name="weather_condition_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <array name="wind_condition_options">
+        <item>10mhp (4m/s)</item>
+        <item>15mhp (7m/s)</item>
+        <item>25mhp (11m/s)</item>
+    </array>
+    <array name="hot_condition_options">
+        <item>70\u2109 (21\u2103)</item>
+        <item>80\u2109 (27\u2103s)</item>
+        <item>95\u2109 (35\u2103)</item>
+    </array>
+    <array name="cold_condition_options">
+        <item>40\u2109 (5\u2103)</item>
+        <item>60\u2109 (15\u2103s)</item>
+        <item>70\u2109 (21\u2103)</item>
+    </array>
+    <string name="standard_weather_option">1</string>
+</resources>

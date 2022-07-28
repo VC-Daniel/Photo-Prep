@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/shrinkPhotoShootInfoViews"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="@integer/normal_animation_time"
+        motion:motionInterpolator="linear">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="40"
+                motion:motionTarget="@id/smallWeatherIcon" />
+            <KeyAttribute
+                android:alpha="0.5"
+                motion:framePosition="60"
+                motion:motionTarget="@id/smallWeatherIcon" />
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="70"
+                motion:motionTarget="@id/smallWeatherIcon" />
+
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="40"
+                motion:motionTarget="@id/directionsButton" />
+            <KeyAttribute
+                android:alpha="0.5"
+                motion:framePosition="60"
+                motion:motionTarget="@id/directionsButton" />
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="70"
+                motion:motionTarget="@id/directionsButton" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/smallWeatherIcon"
+            android:layout_width="@dimen/minimized_next_photo_shoot_button"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/mini_margin"
+            android:layout_marginBottom="@dimen/mini_margin"
+            android:alpha="0"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintBottom_toBottomOf="@+id/groupChip"
+            motion:layout_constraintEnd_toStartOf="@+id/directionsButton"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toEndOf="@+id/petChip"
+            motion:layout_constraintTop_toBottomOf="@+id/nextPhotoShootLabelText" />
+        <Constraint
+            android:id="@+id/directionsButton"
+            android:layout_width="@dimen/minimized_next_photo_shoot_button"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:alpha="0"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintBottom_toBottomOf="@+id/groupChip"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toEndOf="@+id/smallWeatherIcon"
+            motion:layout_constraintTop_toTopOf="@+id/groupChip" />
+        <Constraint
+            android:id="@+id/groupChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintEnd_toStartOf="@+id/childChip"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/nextPhotoShootLabelText" />
+        <Constraint
+            android:id="@+id/childChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintEnd_toStartOf="@+id/petChip"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toEndOf="@+id/groupChip"
+            motion:layout_constraintTop_toTopOf="@+id/groupChip" />
+        <Constraint
+            android:id="@+id/petChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintEnd_toEndOf="@+id/smallWeatherIcon"
+            motion:layout_constraintStart_toEndOf="@+id/childChip"
+            motion:layout_constraintTop_toTopOf="@+id/groupChip" />
+        <Constraint
+            android:id="@+id/mapCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/weatherCard"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toEndOf="@+id/weatherCard"
+            motion:layout_constraintTop_toTopOf="@+id/weatherCard"
+            motion:layout_constraintWidth_percent="0.4" />
+        <Constraint
+            android:id="@+id/weatherCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toStartOf="@+id/mapCard"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/nextPhotoShootBackground"
+            motion:layout_constraintWidth_percent="0.4" />
+        <Constraint
+            android:id="@+id/nextPhotoShootBackground"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/large_scrim_height"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/locationImage" />
+        <Constraint
+            android:id="@+id/mainWeatherIcon"
+            android:layout_width="@dimen/large_button_size"
+            android:layout_height="@dimen/large_button_size"
+            android:layout_marginEnd="@dimen/weather_icon_end_margin"
+            android:src="@drawable/ic_no_weather_data"
+            motion:layout_constraintBottom_toTopOf="@+id/precipitationLabel"
+            motion:layout_constraintEnd_toEndOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/weatherTitle"/>
+        <Constraint
+            android:id="@+id/highTempLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/weather_info_margin"
+            android:minEms="@integer/weather_info_width"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/weatherTitle" />
+        <Constraint
+            android:id="@+id/lowTempLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:minEms="@integer/weather_info_width"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/highTempLabel" />
+        <Constraint
+            android:id="@+id/precipitationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:minEms="@integer/weather_info_width"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/lowTempLabel" />
+        <Constraint
+            android:id="@+id/windLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:minEms="@integer/weather_info_width"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/precipitationLabel" />
+        <Constraint
+            android:id="@+id/weatherTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/half_small_padding"
+            android:paddingBottom="@dimen/half_small_padding"
+            android:text="@string/weather_title"
+            motion:layout_constraintEnd_toEndOf="@+id/weatherCard"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toTopOf="@id/weatherCard" />
+        <Constraint
+            android:id="@+id/weatherDescriptionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/windLabel" />
+        <Constraint
+            android:id="@+id/weatherDescriptionLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:layout_marginEnd="@dimen/half_normal_margin"
+            android:layout_marginBottom="@dimen/half_normal_margin"
+            motion:layout_constraintEnd_toEndOf="@id/weatherCard"
+            motion:layout_constraintStart_toEndOf="@id/weatherDescriptionTitle"
+            motion:layout_constraintTop_toBottomOf="@id/windLabel" />
+        <Constraint
+            android:id="@+id/weatherNoteDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:elevation="@dimen/normal_elevation"
+            motion:layout_constraintBottom_toBottomOf="@+id/weatherCard"
+            motion:layout_constraintEnd_toEndOf="@+id/weatherCard"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard" />
+        <Constraint
+            android:id="@+id/weatherNoteInfoImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:alpha="0"
+            android:elevation="@dimen/normal_elevation"
+            motion:layout_constraintBottom_toBottomOf="@+id/weatherNoteDetail"
+            motion:layout_constraintStart_toStartOf="@id/weatherNoteDetail"
+            motion:layout_constraintTop_toTopOf="@+id/weatherNoteDetail" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/mapCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="@dimen/small_elevation"
+            android:translationY="@dimen/half_info_widget_size"
+            motion:layout_constraintBottom_toBottomOf="@+id/weatherCard"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toEndOf="@+id/weatherCard"
+            motion:layout_constraintTop_toTopOf="@+id/weatherCard"
+            motion:layout_constraintWidth_percent="0.4" />
+        <Constraint
+            android:id="@+id/weatherCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:elevation="@dimen/small_elevation"
+            android:translationY="@dimen/half_info_widget_size"
+            motion:layout_constraintBottom_toBottomOf="@id/nextPhotoShootBackground"
+            motion:layout_constraintEnd_toStartOf="@+id/mapCard"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintWidth_percent="0.4" />
+        <Constraint
+            android:id="@+id/nextPhotoShootBackground"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/large_scrim_height"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/smallWeatherIcon"
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="@dimen/small_icon_size"
+            android:layout_marginStart="@dimen/weather_icon_margin"
+            android:layout_marginTop="@dimen/mini_margin"
+            android:layout_marginBottom="@dimen/mini_margin"
+            android:alpha="1"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintBottom_toBottomOf="@+id/groupChip"
+            motion:layout_constraintEnd_toStartOf="@+id/directionsButton"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toEndOf="@+id/petChip"
+            motion:layout_constraintTop_toBottomOf="@+id/nextPhotoShootLabelText" />
+        <Constraint
+            android:id="@+id/directionsButton"
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:alpha="1"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintBottom_toBottomOf="@+id/groupChip"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toEndOf="@+id/smallWeatherIcon"
+            motion:layout_constraintTop_toTopOf="@+id/groupChip" />
+        <Constraint android:id="@+id/weatherTitle" />
+        <Constraint
+            android:id="@+id/groupChip"
+            android:layout_width="@dimen/mini_chip_size"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintEnd_toStartOf="@+id/childChip"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/nextPhotoShootLabelText" />
+        <Constraint
+            android:id="@+id/childChip"
+            android:layout_width="@dimen/mini_chip_size"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:elevation="@dimen/small_elevation"
+            motion:layout_constraintEnd_toStartOf="@+id/petChip"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toEndOf="@+id/groupChip"
+            motion:layout_constraintTop_toTopOf="@+id/groupChip" />
+        <Constraint
+            android:id="@+id/petChip"
+            android:layout_width="@dimen/small_chip_size"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:elevation="@dimen/mini_margin"
+            motion:layout_constraintEnd_toStartOf="@+id/smallWeatherIcon"
+            motion:layout_constraintStart_toEndOf="@+id/childChip"
+            motion:layout_constraintTop_toTopOf="@+id/groupChip" />
+        <Constraint
+            android:id="@+id/mainWeatherIcon"
+            android:layout_width="@dimen/large_button_size"
+            android:layout_height="@dimen/large_button_size"
+            android:layout_marginEnd="@dimen/weather_icon_end_margin"
+            android:elevation="@dimen/small_elevation"
+            android:src="@drawable/ic_no_weather_data"
+            android:translationY="@dimen/half_photo_shoot_overview_height_translation"
+            motion:layout_constraintBottom_toTopOf="@+id/precipitationLabel"
+            motion:layout_constraintEnd_toEndOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/weatherTitle" />
+        <Constraint
+            android:id="@+id/highTempLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/weather_info_margin"
+            android:elevation="@dimen/small_elevation"
+            android:minEms="@integer/weather_info_width"
+            android:translationY="@dimen/half_photo_shoot_overview_height_translation"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/weatherTitle" />
+        <Constraint
+            android:id="@+id/lowTempLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:elevation="@dimen/small_elevation"
+            android:minEms="@integer/weather_info_width"
+            android:translationY="@dimen/half_photo_shoot_overview_height_translation"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/highTempLabel" />
+        <Constraint
+            android:id="@+id/precipitationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:elevation="@dimen/small_elevation"
+            android:minEms="@integer/weather_info_width"
+            android:translationY="@dimen/half_photo_shoot_overview_height_translation"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/lowTempLabel" />
+        <Constraint
+            android:id="@+id/windLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:elevation="@dimen/small_elevation"
+            android:minEms="@integer/weather_info_width"
+            android:translationY="@dimen/half_photo_shoot_overview_height_translation"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/precipitationLabel" />
+        <Constraint
+            android:id="@+id/weatherDescriptionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:elevation="@dimen/small_elevation"
+            android:translationY="@dimen/half_photo_shoot_overview_height_translation"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toBottomOf="@id/windLabel" />
+        <Constraint
+            android:id="@+id/weatherDescriptionLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_normal_margin"
+            android:layout_marginEnd="@dimen/half_normal_margin"
+            android:layout_marginBottom="@dimen/half_normal_margin"
+            android:elevation="@dimen/small_elevation"
+            android:translationY="@dimen/half_photo_shoot_overview_height_translation"
+            motion:layout_constraintEnd_toEndOf="@id/weatherCard"
+            motion:layout_constraintStart_toEndOf="@id/weatherDescriptionTitle"
+            motion:layout_constraintTop_toBottomOf="@id/windLabel" />
+        <Constraint
+            android:id="@+id/weatherTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/small_elevation"
+            android:paddingTop="@dimen/half_small_padding"
+            android:paddingBottom="@dimen/half_small_padding"
+            android:text="@string/weather_title"
+            android:translationY="@dimen/half_photo_shoot_overview_height_translation"
+            motion:layout_constraintEnd_toEndOf="@+id/weatherCard"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard"
+            motion:layout_constraintTop_toTopOf="@id/weatherCard" />
+        <Constraint
+            android:id="@+id/weatherNoteDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:translationY="@dimen/half_info_widget_size"
+            motion:layout_constraintBottom_toBottomOf="@+id/weatherCard"
+            motion:layout_constraintEnd_toEndOf="@+id/weatherCard"
+            motion:layout_constraintStart_toStartOf="@id/weatherCard" />
+        <Constraint
+            android:id="@+id/weatherNoteInfoImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:alpha="0"
+            android:translationY="@dimen/half_info_widget_size"
+            motion:layout_constraintBottom_toBottomOf="@+id/weatherNoteDetail"
+            motion:layout_constraintStart_toStartOf="@id/weatherNoteDetail"
+            motion:layout_constraintTop_toTopOf="@+id/weatherNoteDetail" />
+    </ConstraintSet>
+</MotionScene>

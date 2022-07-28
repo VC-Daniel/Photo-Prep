@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="photoShootOverview"
+            type="com.vcdaniel.photoprep.PhotoShootOverview" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/photoShootLocationCard"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_thumbnail_size"
+        android:layout_marginStart="@dimen/large_thumbnail_margin"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/large_thumbnail_margin"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/normal_padding"
+        app:cardCornerRadius="@dimen/normal_rounded_radius"
+        app:cardElevation="@dimen/extra_high_elevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/photoShootImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lighthouse_place_holder_portrait_low"
+                app:layout_constraintBottom_toTopOf="@id/locationNameTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:photoShootMapThumbnailImage="@{photoShootOverview}"
+                android:contentDescription="@string/main_location_image_default_description"/>
+
+            <View
+                android:id="@+id/titleScrimView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/extraTransparentScrimColor"
+                app:layout_constraintBottom_toBottomOf="@+id/locationNameTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/locationNameTextView" />
+
+            <TextView
+                android:id="@+id/locationNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:text="@{photoShootOverview.photoShootLocationName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="@string/sample_photo_shoot_location_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

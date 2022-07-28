@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="main_image_size">0.5</fraction>
+    <fraction name="next_photo_shoot_chips_horizontal_bias">1.0</fraction>
+</resources>

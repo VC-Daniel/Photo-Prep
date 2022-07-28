@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">48dp</dimen>
+    <dimen name="centered_fab_margin">24dp</dimen>
+    <dimen name="instructions_margin_top">8dp</dimen>
+    <dimen name="weather_info_margin">16dp</dimen>
+    <dimen name="weather_icon_end_margin">@dimen/extra_large_margin</dimen>
+</resources>

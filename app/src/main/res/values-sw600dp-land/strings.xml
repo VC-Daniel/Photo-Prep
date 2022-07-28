@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_location">New Location</string>
+    <string name="new_prep_fab_text">New Prep</string>
+</resources>

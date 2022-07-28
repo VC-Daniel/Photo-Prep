@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_photo_shoot_locations"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_photo_shoot_locations" />
+        <item
+            android:id="@+id/nav_common_prep_library"
+            android:icon="@drawable/ic_baseline_checklist_rtl_24"
+            android:title="@string/menu_common_prep_library" />
+        <item
+            android:id="@+id/nav_preferences"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/menu_preferences" />
+    </group>
+</menu>

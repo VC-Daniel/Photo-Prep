@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_photo_shoot_locations">
+
+    <fragment
+        android:id="@+id/nav_photo_shoot_locations"
+        android:name="com.vcdaniel.photoprep.ui.photoShootLocations.PhotoShootLocationsFragment"
+        android:label="@string/menu_photo_shoot_locations"
+        tools:layout="@layout/fragment_photo_shoot_locations">
+        <action
+            android:id="@+id/action_nav_photo_shoot_locations_to_edit_photo_shoot_location"
+            app:destination="@id/nav_edit_photo_shoot_location"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/stationary"
+            app:popEnterAnim="@anim/stationary"
+            app:popExitAnim="@anim/slide_out_bottom" />
+        <action
+            android:id="@+id/action_nav_photo_shoot_locations_to_photoShootLocationFragment"
+            app:destination="@id/nav_photo_shoot_location"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_common_prep_library"
+        android:name="com.vcdaniel.photoprep.ui.commonPrepLibrary.CommonPrepLibraryFragment"
+        android:label="@string/menu_common_prep_library"
+        tools:layout="@layout/fragment_common_prep_library" />
+
+    <fragment
+        android:id="@+id/nav_preferences"
+        android:name="com.vcdaniel.photoprep.ui.preferences.PreferencesFragment"
+        android:label="@string/menu_preferences" />
+    <fragment
+        android:id="@+id/nav_edit_photo_shoot_location"
+        android:name="com.vcdaniel.photoprep.ui.editPhotoShootLocation.EditPhotoShootLocationFragment"
+        android:label=""
+        tools:layout="@layout/fragment_edit_photo_shoot_location">
+        <argument
+            android:name="@string/show_close_button_key"
+            android:defaultValue="true" />
+        <argument
+            android:name="photoShootOverview"
+            app:argType="com.vcdaniel.photoprep.PhotoShootOverview" />
+        <action
+            android:id="@+id/action_nav_edit_photo_shoot_location_to_nav_photo_shoot_locations"
+            app:destination="@id/nav_photo_shoot_locations"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/nav_photo_shoot_locations"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_photo_shoot_location"
+        android:name="com.vcdaniel.photoprep.ui.photoShootLocation.PhotoShootLocationFragment"
+        tools:layout="@layout/fragment_photo_shoot_location">
+        <argument
+            android:name="selectedPhotoShootLocationID"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_photoShootLocationFragment_to_nav_edit_photo_shoot_location"
+            app:destination="@id/nav_edit_photo_shoot_location"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/stationary"
+            app:popEnterAnim="@anim/stationary"
+            app:popExitAnim="@anim/slide_out_bottom" />
+    </fragment>
+</navigation>
